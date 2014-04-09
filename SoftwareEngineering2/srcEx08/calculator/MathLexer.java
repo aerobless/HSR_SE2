@@ -12,6 +12,7 @@ package calculator;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.HashMap;
 
 import calculator.lexer.EndSymbol;
 import calculator.lexer.IdentifierSymbol;
@@ -24,6 +25,12 @@ public class MathLexer {
 	private StringReader reader;
 	private char current;
 	private boolean endOfStream;
+	
+	//Flyweight Symbols
+	private EndSymbol endSymobl = new EndSymbol();
+	private HashMap<String, IdentifierSymbol> identifiers = new HashMap<String, IdentifierSymbol>();
+	private HashMap<Integer, IntegerSymbol> integers = new HashMap<Integer, IntegerSymbol>();
+	private HashMap<TokenType, TokenSymbol> tokens = new HashMap<TokenType, TokenSymbol>();
 
 	public MathLexer() {
 		endOfStream = false;
@@ -38,16 +45,25 @@ public class MathLexer {
 	public LexicalSymbol nextSymbol() throws LexerException {
 		skipBlanks();
 		if (endOfStream) {
-			return new EndSymbol();
+			return endSymobl;
 		} else if (isLetter(current)) {
 			String identifier = readIdentifer();
-			return new IdentifierSymbol(identifier);
+			if(!identifiers.containsKey(identifier)){
+				identifiers.put(identifier, new IdentifierSymbol(identifier));
+			}
+			return identifiers.get(identifier);
 		} else if (isDigit(current)) {
 			int integerValue = readInteger();
-			return new IntegerSymbol(integerValue);
+			if(!integers.containsKey(integerValue)){
+				integers.put(integerValue, new IntegerSymbol(integerValue));
+			}
+			return integers.get(integerValue);
 		} else {
 			TokenType tokenType = readTokenType();
-			return new TokenSymbol(tokenType);
+			if(!tokens.containsKey(tokenType)){
+				tokens.put(tokenType, new TokenSymbol(tokenType));
+			}
+			return tokens.get(tokenType);
 		}
 	}
 
