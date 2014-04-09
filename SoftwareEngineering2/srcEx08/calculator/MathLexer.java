@@ -42,6 +42,16 @@ public class MathLexer {
 		nextChar();
 	}
 
+	/*
+	 * The flyweight pattern is about not instancing a ton of small objects. E.g.
+	 * in a word processor you shouldn't have a new instance for each character, but rather
+	 * you should re-use characters. If the flyweight pattern isn't used it is likely that
+	 * an application will crash when editing large documents.
+	 * A simple flyweight pattern explanation on YT: http://youtu.be/DuWlM7M9awM
+	 * 
+	 * In this example we're storing symbols (identifiers, integers and tokens) in hashmaps
+	 * so that they get only created once and are then re-used from those hashmaps.
+	 */
 	public LexicalSymbol nextSymbol() throws LexerException {
 		skipBlanks();
 		if (endOfStream) {
