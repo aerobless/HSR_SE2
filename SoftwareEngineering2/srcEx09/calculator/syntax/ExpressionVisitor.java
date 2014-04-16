@@ -8,5 +8,4 @@ public interface ExpressionVisitor {
 	public int visit(Number aNumber);
 	public int visit(UnaryExpression aUnaryExpression) throws EvaluationException;
 	public int visit(Assignment aAssignment) throws EvaluationException;
-
 }

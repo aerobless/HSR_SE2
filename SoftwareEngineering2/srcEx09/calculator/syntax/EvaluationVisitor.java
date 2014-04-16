@@ -60,7 +60,6 @@ public class EvaluationVisitor implements ExpressionVisitor{
 
 	@Override
 	public int visit(Assignment aAssignment) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }
