@@ -56,4 +56,11 @@ public class EvaluationVisitor implements ExpressionVisitor{
 			throw new EvaluationException("Invalid operator");
 		}
 	}
+
+
+	@Override
+	public int visit(Assignment aAssignment) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

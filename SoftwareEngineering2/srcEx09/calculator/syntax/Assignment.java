@@ -21,6 +21,6 @@ public class Assignment implements SyntaxNode {
 
 	@Override
 	public int accept(ExpressionVisitor aV) throws EvaluationException {
-		return 0;
+		return aV.visit(this);
 	}
 }

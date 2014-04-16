@@ -18,7 +18,9 @@ public class MathSolver {
 		int value = assignment.getExpression().accept(new EvaluationVisitor(context));
 		String variableId = assignment.getDesignator().getIdentifier();
 		context.assign(variableId, value);
-		assignment.getExpression().accept(new DumpVisitor());
+		
+		assignment.accept(new DumpVisitor());
+		
 		System.out.println("");
 		return variableId + " = " + value;
 	}
