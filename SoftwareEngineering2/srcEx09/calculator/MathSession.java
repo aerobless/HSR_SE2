@@ -2,8 +2,8 @@ package calculator;
 
 import calculator.MathLexer.LexerException;
 import calculator.MathParser.ParserException;
-import calculator.MathSolver.EvaluationException;
 import calculator.syntax.SyntaxNode;
+
 
 public class MathSession {
 	MathLexer lexer;

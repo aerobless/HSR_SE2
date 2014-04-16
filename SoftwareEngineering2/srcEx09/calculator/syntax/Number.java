@@ -1,5 +1,7 @@
 package calculator.syntax;
 
+import calculator.VariableContext;
+
 public class Number implements Expression {
 	private int value;
 	
@@ -8,6 +10,14 @@ public class Number implements Expression {
 	}
 	
 	public int getValue() {
+		return value;
+	}
+
+	/* (non-Javadoc)
+	 * @see calculator.syntax.Expression#interpret(calculator.VariableContext)
+	 */
+	@Override
+	public int interpret(VariableContext aMemory) {
 		return value;
 	}
 }

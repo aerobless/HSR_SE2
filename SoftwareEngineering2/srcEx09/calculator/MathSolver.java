@@ -1,28 +1,24 @@
 package calculator;
 
 import calculator.syntax.Assignment;
-import calculator.syntax.BinaryExpression;
-import calculator.syntax.Designator;
-import calculator.syntax.Expression;
-import calculator.syntax.Number;
-import calculator.syntax.Operator;
 import calculator.syntax.SyntaxNode;
-import calculator.syntax.UnaryExpression;
 
-@Deprecated
+
+
 public class MathSolver {
+
 	public String evaluate(SyntaxNode node, VariableContext context)
 			throws EvaluationException {
 		if (!(node instanceof Assignment)) {
 			throw new EvaluationException("Unsupported statement");
 		}
 		Assignment assignment = (Assignment) node;
-		int value = evaluateExpression(assignment.getExpression(), context);
+		int value = assignment.getExpression().interpret(context);
 		String variableId = assignment.getDesignator().getIdentifier();
 		context.assign(variableId, value);
 		return variableId + " = " + value;
 	}
-
+/*
 	private int evaluateExpression(Expression expression,
 			VariableContext context) throws EvaluationException {
 		if (expression instanceof Number) {
@@ -86,13 +82,5 @@ public class MathSolver {
 		} else {
 			throw new EvaluationException("Invalid operator");
 		}
-	}
-
-	public class EvaluationException extends Exception {
-		private static final long serialVersionUID = -4954487031648066245L;
-
-		public EvaluationException(String message) {
-			super(message);
-		}
-	}
+	}*/
 }
