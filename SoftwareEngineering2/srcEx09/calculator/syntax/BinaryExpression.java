@@ -30,14 +30,6 @@ public class BinaryExpression implements Expression {
 	 * @see calculator.syntax.Expression#interpret(calculator.VariableContext)
 	 */
 	@Override
-	public int interpret(VariableContext aMemory) throws EvaluationException {
-		return accept(aMemory, new Visitor());
-	}
-
-	/* (non-Javadoc)
-	 * @see calculator.syntax.Expression#interpret(calculator.VariableContext)
-	 */
-	@Override
 	public int accept(VariableContext aMemory, Visitor v) throws EvaluationException {
 		return v.visit(aMemory, this);
 	}

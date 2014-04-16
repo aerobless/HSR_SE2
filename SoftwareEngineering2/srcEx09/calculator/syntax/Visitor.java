@@ -5,25 +5,24 @@ import calculator.VariableContext;
 
 
 public class Visitor {
-
 	public int visit(VariableContext aMemory, BinaryExpression aBinaryExpression) throws EvaluationException {
 		Operator operator = aBinaryExpression.getOperator();
 		if (operator == Operator.ADD) {
-			return aBinaryExpression.left.accept(aMemory, new Visitor()) + aBinaryExpression.right.accept(aMemory, new Visitor());
+			return aBinaryExpression.left.accept(aMemory, this) + aBinaryExpression.right.accept(aMemory, this);
 		} else if (operator == Operator.SUB) {
-			return aBinaryExpression.left.accept(aMemory, new Visitor()) - aBinaryExpression.right.accept(aMemory, new Visitor());
+			return aBinaryExpression.left.accept(aMemory, this) - aBinaryExpression.right.accept(aMemory, this);
 		} else if (operator == Operator.MUL) {
-			return aBinaryExpression.left.accept(aMemory, new Visitor()) * aBinaryExpression.right.accept(aMemory, new Visitor());
+			return aBinaryExpression.left.accept(aMemory, this) * aBinaryExpression.right.accept(aMemory, this);
 		} else if (operator == Operator.DIV) {
-			if (aBinaryExpression.right.accept(aMemory, new Visitor()) == 0) {
+			if (aBinaryExpression.right.accept(aMemory, this) == 0) {
 				throw new EvaluationException("DIV BY 0");
 			}
-			return aBinaryExpression.left.accept(aMemory, new Visitor()) / aBinaryExpression.right.accept(aMemory, new Visitor());
+			return aBinaryExpression.left.accept(aMemory, this) / aBinaryExpression.right.accept(aMemory, this);
 		} else if (operator == Operator.MOD) {
-			if (aBinaryExpression.right.accept(aMemory, new Visitor()) == 0) {
+			if (aBinaryExpression.right.accept(aMemory, this) == 0) {
 				throw new EvaluationException("MOD BY 0");
 			}
-			return aBinaryExpression.left.accept(aMemory, new Visitor()) % aBinaryExpression.right.accept(aMemory, new Visitor());
+			return aBinaryExpression.left.accept(aMemory, this) % aBinaryExpression.right.accept(aMemory, this);
 		} else {
 			throw new EvaluationException("Invalid operator");
 		}
@@ -44,9 +43,9 @@ public class Visitor {
 	public int visit(VariableContext aMemory, UnaryExpression aUnaryExpression) throws EvaluationException {
 		// TODO Auto-generated method stub
 		if (aUnaryExpression.operator == Operator.ADD) {
-			return aUnaryExpression.subExpression.accept(aMemory, new Visitor());
+			return aUnaryExpression.subExpression.accept(aMemory, this);
 		} else if (aUnaryExpression.operator == Operator.SUB) {
-			return -aUnaryExpression.subExpression.accept(aMemory, new Visitor());
+			return -aUnaryExpression.subExpression.accept(aMemory, this);
 		} else {
 			throw new EvaluationException("Invalid operator");
 		}

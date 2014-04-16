@@ -12,15 +12,7 @@ public class Number implements Expression {
 	public int getValue() {
 		return value;
 	}
-
-	/* (non-Javadoc)
-	 * @see calculator.syntax.Expression#interpret(calculator.VariableContext)
-	 */
-	@Override
-	public int interpret(VariableContext aMemory) {
-		return accept(aMemory, new Visitor());
-	}
-
+	
 	/* (non-Javadoc)
 	 * @see calculator.syntax.Expression#interpret(calculator.VariableContext)
 	 */
