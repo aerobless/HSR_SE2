@@ -1,8 +1,9 @@
 package calculator;
 
 import calculator.syntax.Assignment;
-import calculator.syntax.SyntaxNode;
+import calculator.syntax.DumpVisitor;
 import calculator.syntax.EvaluationVisitor;
+import calculator.syntax.SyntaxNode;
 
 
 
@@ -15,6 +16,8 @@ public class MathSolver {
 		}
 		Assignment assignment = (Assignment) node;
 		int value = assignment.getExpression().accept(context, new EvaluationVisitor(context));
+		assignment.getExpression().accept(context, new DumpVisitor(context));
+		System.out.println("");
 		String variableId = assignment.getDesignator().getIdentifier();
 		context.assign(variableId, value);
 		return variableId + " = " + value;
