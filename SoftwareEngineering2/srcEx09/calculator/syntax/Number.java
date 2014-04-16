@@ -3,7 +3,7 @@ package calculator.syntax;
 import calculator.VariableContext;
 
 public class Number implements Expression {
-	private int value;
+	int value;
 	
 	public Number(int value) {
 		this.value = value;
@@ -26,6 +26,6 @@ public class Number implements Expression {
 	 */
 	@Override
 	public int accept(VariableContext aMemory, Visitor v) {
-		return value;
+		return v.visit(aMemory, this);
 	}
 }

@@ -4,8 +4,8 @@ import calculator.EvaluationException;
 import calculator.VariableContext;
 
 public class UnaryExpression implements Expression {
-	private Operator operator;
-	private Expression subExpression;
+	Operator operator;
+	Expression subExpression;
 	
 	public UnaryExpression(Operator operator, Expression subExpression) {
 		this.operator = operator;
@@ -33,13 +33,6 @@ public class UnaryExpression implements Expression {
 	 */
 	@Override
 	public int accept(VariableContext aMemory, Visitor v) throws EvaluationException {
-		// TODO Auto-generated method stub
-		if (operator == Operator.ADD) {
-			return subExpression.accept(aMemory, new Visitor());
-		} else if (operator == Operator.SUB) {
-			return -subExpression.accept(aMemory, new Visitor());
-		} else {
-			throw new EvaluationException("Invalid operator");
-		}
+		return v.visit(aMemory, this);
 	}
 }

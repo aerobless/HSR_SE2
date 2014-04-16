@@ -4,7 +4,7 @@ import calculator.EvaluationException;
 import calculator.VariableContext;
 
 public class Designator implements Expression {
-	private String identifier;
+	String identifier;
 	
 	public Designator(String identifier) {
 		this.identifier = identifier;
@@ -27,10 +27,6 @@ public class Designator implements Expression {
 	 */
 	@Override
 	public int accept(VariableContext aMemory, Visitor v) throws EvaluationException {
-		try {
-			return aMemory.get(identifier);
-		} catch (Exception anEx) {
-			throw new EvaluationException(anEx.getMessage());
-		}
+		return v.visit(aMemory, this);
 	}
 }
