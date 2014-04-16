@@ -1,38 +1,12 @@
 package calculator.syntax;
 
 import calculator.EvaluationException;
-import calculator.VariableContext;
 
 public class DumpVisitor implements ExpressionVisitor{
-	VariableContext memory;
-	
-	public DumpVisitor(VariableContext aMemory) {
-		super();
-		memory = aMemory;
-	}
 
 	@Override
 	public int visit(BinaryExpression aBinaryExpression) throws EvaluationException {
-		Operator operator = aBinaryExpression.getOperator();
-		if (operator == Operator.ADD) {
-			System.out.print(aBinaryExpression.left.accept(memory, this) +", ADD,"+ aBinaryExpression.right.accept(memory, this));
-		} else if (operator == Operator.SUB) {
-			System.out.print(aBinaryExpression.left.accept(memory, this) +", SUB,"+ aBinaryExpression.right.accept(memory, this));
-		} else if (operator == Operator.MUL) {
-			System.out.print(aBinaryExpression.left.accept(memory, this) +", MUL,"+ aBinaryExpression.right.accept(memory, this));
-		} else if (operator == Operator.DIV) {
-			if (aBinaryExpression.right.accept(memory, this) == 0) {
-				throw new EvaluationException("DIV BY 0");
-			}
-			return aBinaryExpression.left.accept(memory, this) / aBinaryExpression.right.accept(memory, this);
-		} else if (operator == Operator.MOD) {
-			if (aBinaryExpression.right.accept(memory, this) == 0) {
-				throw new EvaluationException("MOD BY 0");
-			}
-			return aBinaryExpression.left.accept(memory, this) % aBinaryExpression.right.accept(memory, this);
-		} else {
-			throw new EvaluationException("Invalid operator");
-		}
+		System.out.print(aBinaryExpression.getLeft().accept(this)+","+aBinaryExpression.getOperator()+","+aBinaryExpression.getRight().accept(this));
 		return 0;
 	}
 

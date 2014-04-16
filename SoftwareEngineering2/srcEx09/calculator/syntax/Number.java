@@ -1,6 +1,5 @@
 package calculator.syntax;
 
-import calculator.VariableContext;
 
 public class Number implements Expression {
 	int value;
@@ -14,7 +13,7 @@ public class Number implements Expression {
 	}
 	
 	@Override
-	public int accept(VariableContext aMemory, ExpressionVisitor v) {
+	public int accept(ExpressionVisitor v) {
 		return v.visit(this);
 	}
 }

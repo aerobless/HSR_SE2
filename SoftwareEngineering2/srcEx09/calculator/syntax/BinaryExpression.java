@@ -1,7 +1,6 @@
 package calculator.syntax;
 
 import calculator.EvaluationException;
-import calculator.VariableContext;
 
 public class BinaryExpression implements Expression {
 	Expression left;
@@ -27,7 +26,7 @@ public class BinaryExpression implements Expression {
 	}
 
 	@Override
-	public int accept(VariableContext aMemory, ExpressionVisitor v) throws EvaluationException {
+	public int accept(ExpressionVisitor v) throws EvaluationException {
 		return v.visit(this);
 	}
 }

@@ -1,7 +1,6 @@
 package calculator.syntax;
 
 import calculator.EvaluationException;
-import calculator.VariableContext;
 
 public class UnaryExpression implements Expression {
 	Operator operator;
@@ -21,7 +20,7 @@ public class UnaryExpression implements Expression {
 	}
 
 	@Override
-	public int accept(VariableContext aMemory, ExpressionVisitor v) throws EvaluationException {
+	public int accept(ExpressionVisitor v) throws EvaluationException {
 		return v.visit(this);
 	}
 }
