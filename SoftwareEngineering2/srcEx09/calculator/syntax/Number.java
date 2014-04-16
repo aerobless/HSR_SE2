@@ -13,9 +13,6 @@ public class Number implements Expression {
 		return value;
 	}
 	
-	/* (non-Javadoc)
-	 * @see calculator.syntax.Expression#interpret(calculator.VariableContext)
-	 */
 	@Override
 	public int accept(VariableContext aMemory, Visitor v) {
 		return v.visit(aMemory, this);

@@ -41,7 +41,6 @@ public class Visitor {
 	}
 
 	public int visit(VariableContext aMemory, UnaryExpression aUnaryExpression) throws EvaluationException {
-		// TODO Auto-generated method stub
 		if (aUnaryExpression.operator == Operator.ADD) {
 			return aUnaryExpression.subExpression.accept(aMemory, this);
 		} else if (aUnaryExpression.operator == Operator.SUB) {
