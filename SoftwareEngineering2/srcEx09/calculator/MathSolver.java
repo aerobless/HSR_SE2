@@ -9,6 +9,7 @@ import calculator.syntax.Operator;
 import calculator.syntax.SyntaxNode;
 import calculator.syntax.UnaryExpression;
 
+@Deprecated
 public class MathSolver {
 	public String evaluate(SyntaxNode node, VariableContext context)
 			throws EvaluationException {
