@@ -4,10 +4,10 @@ import calculator.EvaluationException;
 import calculator.VariableContext;
 
 
-public class Visitor implements ExpressionVisitor{
+public class EvaluationVisitor implements ExpressionVisitor{
 	VariableContext memory;
 	
-	public Visitor(VariableContext aMemory) {
+	public EvaluationVisitor(VariableContext aMemory) {
 		super();
 		memory = aMemory;
 	}
