@@ -31,25 +31,33 @@ public class BinaryExpression implements Expression {
 	 */
 	@Override
 	public int interpret(VariableContext aMemory) throws EvaluationException {
+		return accept(aMemory, new Visitor());
+	}
+
+	/* (non-Javadoc)
+	 * @see calculator.syntax.Expression#interpret(calculator.VariableContext)
+	 */
+	@Override
+	public int accept(VariableContext aMemory, Visitor v) throws EvaluationException {
 		Operator operator = this.getOperator();
 		//int left = evaluateExpression(this.getLeft(), aMemory);
 		//int right = evaluateExpression(this.getRight(), aMemory);
 		if (operator == Operator.ADD) {
-			return left.interpret(aMemory) + right.interpret(aMemory);
+			return left.accept(aMemory, new Visitor()) + right.accept(aMemory, new Visitor());
 		} else if (operator == Operator.SUB) {
-			return left.interpret(aMemory) - right.interpret(aMemory);
+			return left.accept(aMemory, new Visitor()) - right.accept(aMemory, new Visitor());
 		} else if (operator == Operator.MUL) {
-			return left.interpret(aMemory) * right.interpret(aMemory);
+			return left.accept(aMemory, new Visitor()) * right.accept(aMemory, new Visitor());
 		} else if (operator == Operator.DIV) {
-			if (right.interpret(aMemory) == 0) {
+			if (right.accept(aMemory, new Visitor()) == 0) {
 				throw new EvaluationException("DIV BY 0");
 			}
-			return left.interpret(aMemory) / right.interpret(aMemory);
+			return left.accept(aMemory, new Visitor()) / right.accept(aMemory, new Visitor());
 		} else if (operator == Operator.MOD) {
-			if (right.interpret(aMemory) == 0) {
+			if (right.accept(aMemory, new Visitor()) == 0) {
 				throw new EvaluationException("MOD BY 0");
 			}
-			return left.interpret(aMemory) % right.interpret(aMemory);
+			return left.accept(aMemory, new Visitor()) % right.accept(aMemory, new Visitor());
 		} else {
 			throw new EvaluationException("Invalid operator");
 		}

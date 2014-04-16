@@ -5,4 +5,6 @@ import calculator.VariableContext;
 
 public interface Expression extends SyntaxNode {
 	public int interpret(VariableContext memory) throws EvaluationException;
+
+	public int accept(VariableContext memory, Visitor v) throws EvaluationException;
 }

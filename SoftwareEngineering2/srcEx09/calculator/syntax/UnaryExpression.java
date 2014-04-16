@@ -25,11 +25,19 @@ public class UnaryExpression implements Expression {
 	 */
 	@Override
 	public int interpret(VariableContext aMemory) throws EvaluationException {
+		return accept(aMemory, new Visitor());
+	}
+
+	/* (non-Javadoc)
+	 * @see calculator.syntax.Expression#interpret(calculator.VariableContext)
+	 */
+	@Override
+	public int accept(VariableContext aMemory, Visitor v) throws EvaluationException {
 		// TODO Auto-generated method stub
 		if (operator == Operator.ADD) {
-			return subExpression.interpret(aMemory);
+			return subExpression.accept(aMemory, new Visitor());
 		} else if (operator == Operator.SUB) {
-			return -subExpression.interpret(aMemory);
+			return -subExpression.accept(aMemory, new Visitor());
 		} else {
 			throw new EvaluationException("Invalid operator");
 		}

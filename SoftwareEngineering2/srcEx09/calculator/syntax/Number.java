@@ -18,6 +18,14 @@ public class Number implements Expression {
 	 */
 	@Override
 	public int interpret(VariableContext aMemory) {
+		return accept(aMemory, new Visitor());
+	}
+
+	/* (non-Javadoc)
+	 * @see calculator.syntax.Expression#interpret(calculator.VariableContext)
+	 */
+	@Override
+	public int accept(VariableContext aMemory, Visitor v) {
 		return value;
 	}
 }
