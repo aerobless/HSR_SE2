@@ -15,7 +15,7 @@ public class Designator implements Expression {
 	}
 
 	@Override
-	public int accept(VariableContext aMemory, Visitor v) throws EvaluationException {
+	public int accept(VariableContext aMemory, ExpressionVisitor v) throws EvaluationException {
 		return v.visit(this);
 	}
 }

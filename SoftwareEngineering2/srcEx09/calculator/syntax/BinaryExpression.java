@@ -21,13 +21,13 @@ public class BinaryExpression implements Expression {
 	public Operator getOperator() {
 		return operator;
 	}
-	
+
 	public Expression getRight() {
 		return right;
 	}
 
 	@Override
-	public int accept(VariableContext aMemory, Visitor v) throws EvaluationException {
+	public int accept(VariableContext aMemory, ExpressionVisitor v) throws EvaluationException {
 		return v.visit(this);
 	}
 }

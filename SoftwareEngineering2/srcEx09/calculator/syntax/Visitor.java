@@ -4,7 +4,7 @@ import calculator.EvaluationException;
 import calculator.VariableContext;
 
 
-public class Visitor {
+public class Visitor implements ExpressionVisitor{
 	VariableContext memory;
 	
 	public Visitor(VariableContext aMemory) {
@@ -43,7 +43,7 @@ public class Visitor {
 		}
 	}
 
-	public int visit(VariableContext aMemory, Number aNumber) {
+	public int visit(Number aNumber) {
 		return aNumber.value;
 	}
 

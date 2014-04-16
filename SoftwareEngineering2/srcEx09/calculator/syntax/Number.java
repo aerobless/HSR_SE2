@@ -14,7 +14,7 @@ public class Number implements Expression {
 	}
 	
 	@Override
-	public int accept(VariableContext aMemory, Visitor v) {
-		return v.visit(aMemory, this);
+	public int accept(VariableContext aMemory, ExpressionVisitor v) {
+		return v.visit(this);
 	}
 }
