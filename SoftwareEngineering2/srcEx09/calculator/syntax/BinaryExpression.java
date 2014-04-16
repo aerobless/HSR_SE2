@@ -28,6 +28,6 @@ public class BinaryExpression implements Expression {
 
 	@Override
 	public int accept(VariableContext aMemory, Visitor v) throws EvaluationException {
-		return v.visit(aMemory, this);
+		return v.visit(this);
 	}
 }

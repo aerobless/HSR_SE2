@@ -14,7 +14,7 @@ public class MathSolver {
 			throw new EvaluationException("Unsupported statement");
 		}
 		Assignment assignment = (Assignment) node;
-		int value = assignment.getExpression().accept(context, new Visitor());
+		int value = assignment.getExpression().accept(context, new Visitor(context));
 		String variableId = assignment.getDesignator().getIdentifier();
 		context.assign(variableId, value);
 		return variableId + " = " + value;
